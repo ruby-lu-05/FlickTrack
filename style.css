@@ -1,0 +1,90 @@
+* {
+    font-family: monospace;
+    box-sizing: border-box;
+    color: white;
+}
+
+:root {
+    --green3: #466672;
+    --green2: #95B198;
+    --green1: #EFF6E0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle at top left, var(--green3), var(--green2)),
+                radial-gradient(circle at top right, var(--green2), var(--green1)),
+                radial-gradient(circle at bottom left, var(--green1), var(--green3)),
+                radial-gradient(circle at bottom right, var(--green3), var(--green1));
+}
+
+.container {
+    padding: 40px;
+    margin: 0 auto;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 400px;
+    justify-content: space-between;
+}
+
+button.nav {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    transition: transform 250ms;
+}
+
+button.nav:hover {
+    transform: scale(1.3);
+}
+
+h1 {
+    font-style: oblique;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 150px);
+    gap: 3px;
+}
+
+.day {
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 500ms;
+}
+
+.day.has-day {
+    background-color: var(--green3);
+}
+
+.day-of-week {
+    background-color: white;
+    color: var(--green3);
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px
+}
+
+.day.has-day:hover {
+    background: linear-gradient(to top, rgba(70, 102, 114), rgba(255, 255, 255, 0));
+}
+
+.day-number {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
