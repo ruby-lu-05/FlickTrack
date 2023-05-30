@@ -19,6 +19,12 @@ body {
                 radial-gradient(circle at bottom right, var(--green3), var(--green1));
 }
 
+::-webkit-scrollbar {width:7px;background:var(--green1);}
+::-webkit-scrollbar-thumb {background:var(--green3);}
+::-webkit-scrollbar,::-webkit-scrollbar-thumb {
+    border:5px transparent;
+}
+
 .container {
     padding: 40px;
     margin: 0 auto;
@@ -80,6 +86,13 @@ h1 {
 
 .day.has-day:hover {
     background: linear-gradient(to top, rgba(70, 102, 114), rgba(255, 255, 255, 0));
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+.day.has-day:hover > .day-number {
+    font-size: 34px;
+    transition: font-size 500ms;
 }
 
 .day-number {
@@ -87,4 +100,74 @@ h1 {
     font-weight: bold;
     text-align: center;
     margin: 0;
+    color: white;
+  }
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--green3);
+    border-radius: 5px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+    pointer-events: none;
+    font-size: 1.15rem;
+  }
+  
+.popup.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.popup * {
+    color: var(--green3);
+}
+
+.popup-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--green3);
+}
+
+.popup-header .popup-title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.popup-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.popup-body {
+    padding: 10px 15px;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(70, 102, 114,0.5);
+    pointer-events: none;
+    transition: 200ms ease-in-out;
+    opacity: 0;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
 }

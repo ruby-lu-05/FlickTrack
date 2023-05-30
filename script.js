@@ -7,6 +7,9 @@ var green1 = rootStyles.getPropertyValue("--green1");
 const calendar = document.getElementById('calendar');
 const monthElement = document.getElementById('month');
 
+const popupCloseButton = document.querySelector('.close-button');
+const overlay = document.getElementById('overlay');
+
 const months = [
     'January',
     'February',
@@ -61,8 +64,11 @@ const drawBlankCalendar = () => {
     }
 };
 
-const updateCalendar = (month, year, media) => {
+const updateCalendar = (month, year) => {
     const dayElements = document.querySelectorAll('.day');
+    for (let i = 0; i<dayElements.length; i++) {
+        console.log(dayElements[i]);
+    }
     const date = new Date();
     const theFirst = new Date(date.getFullYear(), date.getMonth(), 1);
     theFirst.setMonth(month);
@@ -76,6 +82,9 @@ const updateCalendar = (month, year, media) => {
     let dayCounter = 1;
     for (let i=0; i<dayElements.length; i++) {
         const day = dayElements[i];
+        day.addEventListener('click', () =>  {
+            addMediaPopup();
+        })
 
         const dayNumber = day.querySelector('.day-number');
 
@@ -88,7 +97,7 @@ const updateCalendar = (month, year, media) => {
             dayNumber.innerText = '';
         }
 
-        if (today.getMonth() == currentMonth && today.getFullYear() == currentYear && dayNumber.textContent == today.getUTCDate()) {
+        if (today.getMonth() == currentMonth && today.getFullYear() == currentYear && dayNumber.textContent == today.getDate()) {
             dayNumber.style.color = green2;
         } else {
             dayNumber.style.color = 'white';
@@ -112,6 +121,21 @@ const nextMonth = () => {
     updateCalendar(++currentMonth,currentYear);
 }
 
+const addMediaPopup = () => {
+    const popup = document.getElementById('popup');
+    popup.classList.add('active');
+    overlay.classList.add('active');
+}
+
+const closeMediaPopup = () => {
+    const popup = document.getElementById('popup');
+    popup.classList.remove('active');
+    overlay.classList.remove('active');
+}
+
+popupCloseButton.addEventListener('click', closeMediaPopup);
+overlay.addEventListener('click', closeMediaPopup);
+  
 drawDaysOfWeek();
 drawBlankCalendar();
 updateCalendar(currentMonth,currentYear);
